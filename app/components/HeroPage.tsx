@@ -44,6 +44,10 @@ const HeroPage = () => {
           From electrifying concerts to inspiring seminars, find and book
           tickets to the hottest events happening across Nigeria.
         </p>
+
+        <button className="px-10 py-4 cursor-pointer hover:bg-[#1f1f1f1c] hover:border-white hover:text-white hover:border-[1px] text-black font-medium mt-6 rounded-[30px] bg-white">
+          Create Event
+        </button>
       </div>
     </div>
   )
