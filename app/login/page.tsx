@@ -164,7 +164,7 @@ const Page = () => {
           <div className='mt-6 text-center'>
             <p className='text-sm text-gray-600'>
               Don't have an account?{' '}
-              <Link href='/signup' className='font-semibold text-gray-900 hover:text-gray-700'>
+              <Link href='/sign-up' className='font-semibold text-gray-900 hover:text-gray-700'>
                 Sign up for free
               </Link>
             </p>

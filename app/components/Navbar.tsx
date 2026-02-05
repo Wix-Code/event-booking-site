@@ -54,7 +54,7 @@ const Navbar = () => {
                 Login
               </Link>
               <Link
-                href="/signup"
+                href="/sign-up"
                 className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-colors duration-200 font-medium"
               >
                 Sign Up
@@ -125,7 +125,7 @@ const Navbar = () => {
               Login
             </Link>
             <Link
-              href="/signup"
+              href="/sign-up"
               onClick={closeMenu}
               className="text-center bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors duration-200 font-medium"
             >
