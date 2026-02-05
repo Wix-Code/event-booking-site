@@ -1,27 +1,78 @@
 "use client"
 
 import React, { useState } from "react";
-import { IoSearch } from "react-icons/io5";
 import { events } from "../dummyData";
+import { IoSearch } from "react-icons/io5";
+import { LiaTimesSolid } from "react-icons/lia";
 
 const Page = () => {
+  const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const quickSearches = ["Music", "Religion", "Seminar", "Comedy"];
   const categories = ["All", "Music", "Religion", "Seminar", "Comedy", "Sports", "Business"];
 
-  // Auto-filter events based on category
+  // Auto-filter events based on query and category
   const filteredEvents = events.filter((event) => {
+    const matchesQuery = query === "" || 
+                        event.title.toLowerCase().includes(query.toLowerCase()) ||
+                        event.location.toLowerCase().includes(query.toLowerCase());
     const matchesCategory = selectedCategory === "All" || event.category === selectedCategory;
-    return matchesCategory;
+    
+    return matchesQuery && matchesCategory;
   });
 
   return (
     <div className="min-h-screen bg-white py-6 sm:py-10 px-4">
       <div className="max-w-[1200px] mx-auto">
+        {/* Search Section */}
+        <div className="flex flex-col lg:flex-row justify-between gap-4 items-start lg:items-center mb-8">
+          {/* Search Bar */}
+          <div className="w-full lg:flex-1">
+            <div className="w-full flex justify-between items-center h-[54px] border-gray-200 rounded-[30px] p-1 border-[1px] bg-gray-50">
+              <div className="flex justify-between items-center flex-1 px-2">
+                <IoSearch className="text-gray-400 w-5 h-5 mr-2" />
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="outline-0 bg-transparent w-full h-full text-sm sm:text-base"
+                  placeholder="Search events..."
+                />
+                {query && (
+                  <button
+                    onClick={() => setQuery("")}
+                    className="ml-2 cursor-pointer text-gray-400 hover:text-gray-600"
+                  >
+                    <LiaTimesSolid className="w-5 h-5" />
+                  </button>
+                )}
+              </div>
+              <button className="px-6 sm:px-10 bg-black cursor-pointer text-white font-medium h-full rounded-[30px] text-sm sm:text-base whitespace-nowrap">
+                Search
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Search Buttons */}
+          <div className="w-full lg:flex-1">
+            <div className="flex flex-wrap gap-2 sm:gap-3 justify-start lg:justify-end">
+              {quickSearches.map((searchTerm) => (
+                <button
+                  key={searchTerm}
+                  onClick={() => setQuery(searchTerm)}
+                  className="px-6 h-[50px] cursor-pointer rounded-[30px] text-sm font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  {searchTerm}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Title */}
         <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-bold mb-6">
-          Explore Events
+          {query ? `Results for: "${query}"` : "Search Events"}
         </h1>
 
         {/* Category Filter */}
@@ -31,7 +82,7 @@ const Page = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 text-sm cursor-pointer font-medium transition ${
+                className={`px-6 py-3 cursor-pointer text-sm font-medium transition ${
                   selectedCategory === category
                     ? "bg-black text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -44,7 +95,7 @@ const Page = () => {
         </div>
 
         {/* Results Count */}
-        <p className="text-gray-600 font-medium mb-4">
+        <p className="text-gray-600 mb-4">
           {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'} found
         </p>
 
@@ -94,7 +145,7 @@ const Page = () => {
           <div className="text-center py-16">
             <IoSearch className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-700 mb-2">No events found</h3>
-            <p className="text-gray-500">Try selecting a different category</p>
+            <p className="text-gray-500">Try adjusting your search or filter criteria</p>
           </div>
         )}
       </div>
