@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { events } from "./dummyData";
 import { IoSearch } from "react-icons/io5";
 import { LiaTimesSolid } from "react-icons/lia";
+import HeroPage from "./components/HeroPage";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -24,10 +25,11 @@ const Page = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white py-6 sm:py-10 px-4">
+    <div className="min-h-screen mb-10 bg-white">
+      <HeroPage />
       <div className="max-w-[1200px] mx-auto">
         {/* Search Section */}
-        <div className="flex flex-col lg:flex-row justify-between gap-4 items-start lg:items-center mb-8">
+        <div className="flex md:mx-0 mx-5 flex-col lg:flex-row justify-between gap-4 items-start lg:items-center mb-8">
           {/* Search Bar */}
           <div className="w-full lg:flex-1">
             <div className="w-full flex justify-between items-center h-[54px] border-gray-200 rounded-[30px] p-1 border-[1px] bg-gray-50">
@@ -72,83 +74,56 @@ const Page = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-bold mb-6">
+        <h1 className="text-3xl md:mx-0 mx-5 sm:text-4xl lg:text-[50px] font-bold mb-6">
           Discover Events in Naija
         </h1>
 
-        {/* Category Filter */}
-        <div className="mb-6">
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-[30px] text-sm font-medium transition ${
-                  selectedCategory === category
-                    ? "bg-black text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Results Count */}
-        <p className="text-gray-600 mb-4">
-          {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'} found
+        <p className="text-gray-600 md:mx-0 mx-5 mb-4">
+          Trending events in Nigeria
         </p>
 
         {/* Events Grid */}
-        {filteredEvents.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-            {filteredEvents.map((event) => (
-              <div
-                key={event.id}
-                className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
-              >
-                <img
-                  src={event.img}
-                  alt={event.title}
-                  className="w-full h-48 object-cover"
-                />
+        <div className="grid md:mx-0 mx-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          {filteredEvents.map((event) => (
+            <div
+              key={event.id}
+              className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
+            >
+              <img
+                src={event.img}
+                alt={event.title}
+                className="w-full h-48 object-cover"
+              />
 
-                <div className="p-4">
-                  <span className="text-xs px-4 py-2 rounded-[30px] bg-gray-100 border-[1px] border-gray-200 font-semibold text-gray-500">
-                    {event.category}
-                  </span>
+              <div className="p-4">
+                <span className="text-xs px-4 py-2 rounded-[30px] bg-gray-100 border-[1px] border-gray-200 font-semibold text-gray-500">
+                  {event.category}
+                </span>
 
-                  <h2 className="text-lg font-bold mt-2 line-clamp-2">
-                    {event.title}
-                  </h2>
+                <h2 className="text-lg font-bold mt-2 line-clamp-2">
+                  {event.title}
+                </h2>
 
-                  <p className="text-sm sm:text-[16px] text-gray-500 mt-2">
-                    📅 {event.date}
-                  </p>
+                <p className="text-sm sm:text-[16px] text-gray-500 mt-2">
+                  📅 {event.date}
+                </p>
 
-                  <p className="text-sm sm:text-[16px] mt-1 text-gray-500 line-clamp-1">
-                    📍 {event.location}
-                  </p>
+                <p className="text-sm sm:text-[16px] mt-1 text-gray-500 line-clamp-1">
+                  📍 {event.location}
+                </p>
 
-                  <p className="mt-2 font-semibold text-base">
-                    From ₦{event.priceFrom.toLocaleString()}
-                  </p>
+                <p className="mt-2 font-semibold text-base">
+                  From ₦{event.priceFrom.toLocaleString()}
+                </p>
 
-                  <button className="mt-4 w-full bg-gray-900 text-white py-3 rounded-lg text-sm font-semibold cursor-pointer hover:bg-black transition">
-                    View Event
-                  </button>
-                </div>
+                <button className="mt-4 w-full bg-gray-900 text-white py-3 rounded-lg text-sm font-semibold cursor-pointer hover:bg-black transition">
+                  View Event
+                </button>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <IoSearch className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">No events found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter criteria</p>
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
