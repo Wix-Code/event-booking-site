@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { MdAccountCircle } from 'react-icons/md'
-import { IoLocationOutline, IoCalendarOutline, IoTimeOutline, IoTicketOutline } from 'react-icons/io5'
+import { IoLocationOutline, IoCalendarOutline, IoTimeOutline, IoTicketOutline, IoShareSocialSharp } from 'react-icons/io5'
 import { GoPlus } from 'react-icons/go'
 import { FiMinus } from 'react-icons/fi'
 
@@ -48,6 +48,13 @@ const Page = () => {
               src="https://shows.ng/su/evu/1766565553_IMG_8193.jpeg" 
               alt="Campus Connect 2.0" 
             />
+
+            <div className='flex justify-center items-center'>
+              <button className='px-6 flex items-center gap-3 py-3 font-semibold border-[1px] border-gray-200 bg-white cursor-pointer'>
+                <IoShareSocialSharp className='text-[24px]' />
+                Share
+              </button>
+            </div>
             
             <div className=' p-6 rounded-xl'>
               <h2 className='text-2xl font-bold mb-4 text-gray-900'>About This Event</h2>
