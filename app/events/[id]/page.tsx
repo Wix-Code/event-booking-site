@@ -44,7 +44,7 @@ const Page = () => {
           {/* Left Column - Event Details */}
           <div className='flex-1 lg:flex-[2] flex flex-col gap-6'>
             <img 
-              className='w-full h-[500px] lg:h-[500px] object-cover rounded-xl' 
+              className='w-full h-[500px] lg:h-[600px] object-cover rounded-xl' 
               src="https://shows.ng/su/evu/1766565553_IMG_8193.jpeg" 
               alt="Campus Connect 2.0" 
             />
@@ -121,9 +121,9 @@ const Page = () => {
                     {tickets.map((ticket) => (
                       <label
                         key={ticket.id}
-                        className={`flex items-center justify-between p-4 border-2 rounded-lg cursor-pointer transition ${
+                        className={`flex items-center justify-between p-4 border-1 rounded-lg cursor-pointer transition ${
                           selectedTicket === ticket.id
-                            ? 'border-black bg-gray-50'
+                            ? 'border-black border-2 bg-gray-50'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
