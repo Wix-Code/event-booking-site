@@ -5,7 +5,7 @@ import { HiSparkles } from "react-icons/hi2"
 
 const HeroPage = () => {
   return (
-    <div className="relative mb-8 min-h-[70vh] overflow-hidden">
+    <div className="relative mb-8 min-h-[60vh] overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
