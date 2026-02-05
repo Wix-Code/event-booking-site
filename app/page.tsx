@@ -64,7 +64,7 @@ const Page = () => {
                 <button
                   key={searchTerm}
                   onClick={() => setQuery(searchTerm)}
-                  className="px-6 h-[50px] rounded-[30px] text-sm font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  className="px-6 h-[50px] cursor-pointer rounded-[30px] text-sm font-medium transition bg-gray-100 text-gray-700 hover:bg-gray-200"
                 >
                   {searchTerm}
                 </button>
