@@ -17,13 +17,13 @@ const Page = () => {
   const quickSearches = ["Music", "Religion", "Seminar", "Comedy"];
 
   // Auto-filter events based on query and category
-  const filteredEvents = events.filter((event) => {
-    const matchesQuery = event.title.toLowerCase().includes(query.toLowerCase()) ||
-                        event.location.toLowerCase().includes(query.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || event.category === selectedCategory;
+  // const filteredEvents = events.filter((event) => {
+  //   //const matchesQuery = event.title.toLowerCase().includes(query.toLowerCase()) ||
+  //                       //event.location.toLowerCase().includes(query.toLowerCase());
+  //   //const matchesCategory = selectedCategory === "All" || event.category === selectedCategory;
     
-    return matchesQuery && matchesCategory;
-  });
+  //   //return matchesQuery && matchesCategory;
+  // });
 
   return (
     <div className="min-h-screen mb-10 bg-white">
@@ -46,13 +46,13 @@ const Page = () => {
                 {query && (
                   <button
                     onClick={() => setQuery("")}
-                    className="ml-2 text-gray-400 hover:text-gray-600"
+                    className="ml-2 text-gray-400 cursor-pointer hover:text-gray-600"
                   >
                     <LiaTimesSolid className="w-5 h-5" />
                   </button>
                 )}
               </div>
-              <button className="px-6 sm:px-10 bg-black text-white font-medium h-full rounded-[30px] text-sm sm:text-base whitespace-nowrap">
+              <button className="px-6 sm:px-10 cursor-pointer bg-black text-white font-medium h-full rounded-[30px] text-sm sm:text-base whitespace-nowrap">
                 Search
               </button>
             </div>
@@ -86,7 +86,7 @@ const Page = () => {
 
         {/* Events Grid */}
         <div className="grid md:mx-0 mx-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {filteredEvents.map((event) => (
+          {events.map((event) => (
             <div
               key={event.id}
               className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
