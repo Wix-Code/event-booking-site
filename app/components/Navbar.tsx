@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { links } from '../dummyData'
 import Link from 'next/link'
 import { IoClose, IoMenu } from 'react-icons/io5'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,9 +17,13 @@ const Navbar = () => {
     setIsMenuOpen(false)
   }
 
+  const pathname = usePathname()
+
   return (
     <>
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-200/50">
+      <nav className={`sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-200/50 ${
+        pathname === "/dashboard" ? "hidden" : ""
+      }`}>
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
