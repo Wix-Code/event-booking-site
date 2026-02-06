@@ -5,6 +5,7 @@ import { events } from "./dummyData";
 import { IoSearch } from "react-icons/io5";
 import { LiaTimesSolid } from "react-icons/lia";
 import HeroPage from "./components/HeroPage";
+import Link from "next/link";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -117,9 +118,12 @@ const Page = () => {
                   From ₦{event.priceFrom.toLocaleString()}
                 </p>
 
-                <button className="mt-4 w-full bg-gray-900 text-white py-3 rounded-lg text-sm font-semibold cursor-pointer hover:bg-black transition">
+                <Link 
+                  href={`/events/${event.id}`}
+                  className="mt-4 w-full bg-gray-900 text-white py-3 rounded-lg text-sm font-semibold cursor-pointer hover:bg-black transition block text-center"
+                >
                   View Event
-                </button>
+                </Link>
               </div>
             </div>
           ))}

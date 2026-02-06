@@ -5,10 +5,16 @@ import { MdAccountCircle } from 'react-icons/md'
 import { IoLocationOutline, IoCalendarOutline, IoTimeOutline, IoTicketOutline, IoShareSocialSharp } from 'react-icons/io5'
 import { GoPlus } from 'react-icons/go'
 import { FiMinus } from 'react-icons/fi'
+import { useParams } from 'next/navigation'
+import { events } from '@/app/dummyData'
 
 const Page = () => {
   const [selectedTicket, setSelectedTicket] = useState('')
   const [quantity, setQuantity] = useState(1)
+
+  const { id } = useParams()
+  
+  const event = events.find((event) => event.id === Number(id))
 
   const tickets = [
     { id: 'regular', name: 'Regular Ticket', price: 5000 },
@@ -34,7 +40,7 @@ const Page = () => {
             <button className='w-full text-[40px] font-bold py-2'>13</button>
           </div>
           <div className='flex flex-col gap-2 justify-center'>
-            <h1 className='text-2xl font-bold text-gray-900'>Campus Connect 2.0</h1>
+            <h1 className='text-2xl font-bold text-gray-900'>{event?.title || "Campus Connect 2.0"}</h1>
             <p className='text-gray-600'>Sodiq Alao • Starts on Fri, Feb 13, 2026 12:00 PM</p>
           </div>
         </div>
@@ -45,7 +51,7 @@ const Page = () => {
           <div className='flex-1 lg:flex-[2] flex flex-col gap-6'>
             <img 
               className='w-full h-[500px] lg:h-[600px] object-cover rounded-xl' 
-              src="https://shows.ng/su/evu/1766565553_IMG_8193.jpeg" 
+              src={event?.img || "https://shows.ng/su/evu/1766565553_IMG_8193.jpeg"}
               alt="Campus Connect 2.0" 
             />
 
