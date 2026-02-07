@@ -4,32 +4,35 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
+  IoCalendarOutline, 
+  IoStatsChartOutline, 
   IoTicketOutline, 
-  IoBookmarkOutline, 
   IoPersonOutline, 
   IoSettingsOutline,
   IoLogOutOutline,
   IoMenuOutline,
   IoCloseOutline,
-  IoCalendarOutline,
-  IoHeartOutline
+  IoAddCircleOutline,
+  IoWalletOutline,
+  IoNotificationsOutline
 } from 'react-icons/io5'
 
-const Layout = ({ children }: {children: React.ReactNode}) => {
+const OrganizerLayout = ({ children }: {children: React.ReactNode}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const pathname = usePathname()
 
   const menuItems = [
-    { name: 'My Tickets', href: '/dashboard', icon: IoTicketOutline },
-    { name: 'Bookmarks', href: '/dashboard/bookmarks', icon: IoBookmarkOutline },
-    { name: 'Favorites', href: '/dashboard/favorites', icon: IoHeartOutline },
-    { name: 'Upcoming Events', href: '/dashboard/upcoming', icon: IoCalendarOutline },
-    { name: 'Profile', href: '/dashboard/profile', icon: IoPersonOutline },
-    { name: 'Settings', href: '/dashboard/settings', icon: IoSettingsOutline },
+    { name: 'Overview', href: '/organizer', icon: IoStatsChartOutline },
+    { name: 'My Events', href: '/organizer/events', icon: IoCalendarOutline },
+    { name: 'Create Event', href: '/organizer/create', icon: IoAddCircleOutline },
+    { name: 'Ticket Sales', href: '/organizer/sales', icon: IoTicketOutline },
+    { name: 'Attendees', href: '/organizer/attendees', icon: IoPersonOutline },
+    { name: 'Payouts', href: '/organizer/payouts', icon: IoWalletOutline },
+    { name: 'Settings', href: '/organizer/settings', icon: IoSettingsOutline },
   ]
 
-  const isActive = (href: any) => {
-    if (href === '/dashboard') {
+  const isActive = (href: string) => {
+    if (href === '/organizer') {
       return pathname === href
     }
     return pathname.startsWith(href)
@@ -47,16 +50,21 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
               className="h-8 w-auto"
             />
           </Link>
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className='p-2 rounded-lg hover:bg-gray-100'
-          >
-            {sidebarOpen ? (
-              <IoCloseOutline className='text-2xl' />
-            ) : (
-              <IoMenuOutline className='text-2xl' />
-            )}
-          </button>
+          <div className='flex items-center gap-2'>
+            <button className='p-2 rounded-lg hover:bg-gray-100'>
+              <IoNotificationsOutline className='text-xl' />
+            </button>
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className='p-2 rounded-lg hover:bg-gray-100'
+            >
+              {sidebarOpen ? (
+                <IoCloseOutline className='text-2xl' />
+              ) : (
+                <IoMenuOutline className='text-2xl' />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -64,7 +72,7 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
         {/* Sidebar - Desktop */}
         <aside className='hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-white border-r border-gray-200'>
           {/* Logo */}
-          <div className='h-16 flex items-center px-6 border-b border-gray-200'>
+          <div className='h-16 flex items-center justify-between px-6 border-b border-gray-200'>
             <Link href='/'>
               <img 
                 src="https://shows.ng/images/logo.svg" 
@@ -72,6 +80,22 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
                 className="h-8 w-auto"
               />
             </Link>
+            <button className='p-2 rounded-lg hover:bg-gray-100'>
+              <IoNotificationsOutline className='text-xl' />
+            </button>
+          </div>
+
+          {/* Organizer Badge */}
+          <div className='px-6 py-4 bg-gray-50 border-b border-gray-200'>
+            <div className='flex items-center gap-2'>
+              <div className='w-8 h-8 bg-black rounded-full flex items-center justify-center text-white font-bold text-sm'>
+                O
+              </div>
+              <div>
+                <p className='font-semibold text-gray-900 text-sm'>Organizer Mode</p>
+                <p className='text-xs text-gray-600'>Event Manager</p>
+              </div>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -95,8 +119,12 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
             })}
           </nav>
 
-          {/* Logout */}
-          <div className='p-4 border-t border-gray-200'>
+          {/* Switch to User & Logout */}
+          <div className='p-4 border-t border-gray-200 space-y-2'>
+            <Link href='/dashboard' className='flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 w-full transition'>
+              <IoPersonOutline className='text-xl' />
+              <span className='font-medium'>User Dashboard</span>
+            </Link>
             <button className='flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 w-full transition'>
               <IoLogOutOutline className='text-xl' />
               <span className='font-medium'>Logout</span>
@@ -112,8 +140,21 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
               onClick={() => setSidebarOpen(false)}
             />
             <aside className='fixed inset-y-0 left-0 w-64 bg-white z-50 lg:hidden'>
+              {/* Organizer Badge */}
+              <div className='px-6 py-4 bg-gray-50 border-b border-gray-200'>
+                <div className='flex items-center gap-2'>
+                  <div className='w-8 h-8 bg-black rounded-full flex items-center justify-center text-white font-bold text-sm'>
+                    O
+                  </div>
+                  <div>
+                    <p className='font-semibold text-gray-900 text-sm'>Organizer Mode</p>
+                    <p className='text-xs text-gray-600'>Event Manager</p>
+                  </div>
+                </div>
+              </div>
+
               {/* Navigation */}
-              <nav className='px-4 py-6 space-y-1 overflow-y-auto'>
+              <nav className='px-4 py-6 space-y-1 overflow-y-auto h-[calc(100vh-200px)]'>
                 {menuItems.map((item) => {
                   const Icon = item.icon
                   return (
@@ -134,8 +175,12 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
                 })}
               </nav>
 
-              {/* Logout */}
-              <div className='absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200'>
+              {/* Switch & Logout */}
+              <div className='absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 space-y-2'>
+                <Link href='/dashboard' className='flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 w-full transition'>
+                  <IoPersonOutline className='text-xl' />
+                  <span className='font-medium'>User Dashboard</span>
+                </Link>
                 <button className='flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 w-full transition'>
                   <IoLogOutOutline className='text-xl' />
                   <span className='font-medium'>Logout</span>
@@ -156,4 +201,4 @@ const Layout = ({ children }: {children: React.ReactNode}) => {
   )
 }
 
-export default Layout
+export default OrganizerLayout
