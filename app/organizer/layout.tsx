@@ -23,7 +23,7 @@ const OrganizerLayout = ({ children }: {children: React.ReactNode}) => {
 
   const menuItems = [
     { name: 'Overview', href: '/organizer', icon: IoStatsChartOutline },
-    { name: 'My Events', href: '/organizer/events', icon: IoCalendarOutline },
+    { name: 'My Events', href: '/organizer/my-events', icon: IoCalendarOutline },
     { name: 'Create Event', href: '/organizer/create', icon: IoAddCircleOutline },
     { name: 'Ticket Sales', href: '/organizer/sales', icon: IoTicketOutline },
     { name: 'Attendees', href: '/organizer/attendees', icon: IoPersonOutline },
