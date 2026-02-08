@@ -69,7 +69,7 @@ const BookmarksPage = () => {
 
                 <div className='flex items-center justify-between'>
                   <p className='font-bold text-gray-900'>From ₦{event.price.toLocaleString()}</p>
-                  <button className='px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition font-medium text-sm'>
+                  <button className='px-4 py-2 cursor-pointer bg-black text-white rounded-lg hover:bg-gray-800 transition font-medium text-sm'>
                     View Event
                   </button>
                 </div>

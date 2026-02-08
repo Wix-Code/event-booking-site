@@ -1,9 +1,13 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import React from "react"
 import { HiSparkles } from "react-icons/hi2"
 
+
 const HeroPage = () => {
+
+  const router = useRouter()
   return (
     <div className="relative mb-8 min-h-[60vh] overflow-hidden">
       {/* Background Image */}
@@ -45,7 +49,7 @@ const HeroPage = () => {
           tickets to the hottest events happening across Nigeria.
         </p>
 
-        <button className="px-10 py-4 cursor-pointer hover:bg-[#1f1f1f1c] hover:border-white hover:text-white hover:border-[1px] text-black font-medium mt-6 rounded-[30px] bg-white">
+        <button onClick={() => router.push("/organizer")} className="px-10 py-4 cursor-pointer hover:bg-[#1f1f1f1c] hover:border-white hover:text-white hover:border-[1px] text-black font-medium mt-6 rounded-[30px] bg-white">
           Create Event
         </button>
       </div>

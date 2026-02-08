@@ -53,6 +53,13 @@ const Navbar = () => {
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center gap-3">
               <Link
+                href="/dashboard"
+                onClick={closeMenu}
+                className="bg-black text-white px-6 py-2.5 rounded-full hover:bg-gray-800 transition-colors duration-200 font-medium"
+              >
+                Dashboard
+              </Link>
+              <Link
                 href="/login"
                 className="text-gray-700 hover:text-black font-medium transition-colors duration-200 px-4 py-2"
               >
@@ -122,6 +129,13 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="flex flex-col gap-3 border-t border-gray-200 pt-6">
+            <Link
+              href="/dashboard"
+              onClick={closeMenu}
+              className="text-center text-gray-700 hover:text-black font-medium transition-colors duration-200 px-4 py-3 border border-gray-300 rounded-full hover:border-black"
+            >
+              Dashboard
+            </Link>
             <Link
               href="/login"
               onClick={closeMenu}
