@@ -1,5 +1,6 @@
 "use client"
 
+import { SelectContent, Select, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import React, { useState } from 'react'
 import { 
   IoPersonOutline, 
@@ -361,6 +362,18 @@ const OrganizerSettingsPage = () => {
                         <option value='company'>Company</option>
                         <option value='nonprofit'>Non-Profit</option>
                       </select>
+                      <Select>
+                        <SelectTrigger className="w-full max-w-48">
+                          <SelectValue placeholder="Select a gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Gender</SelectLabel>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div>
                       <label className='block text-sm font-medium text-gray-700 mb-2'>Tax ID / Business Number</label>

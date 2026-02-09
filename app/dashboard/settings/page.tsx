@@ -1,5 +1,6 @@
 "use client"
 
+import { SelectContent, Select, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import React, { useState } from 'react'
 import { 
   IoPersonOutline, 
@@ -11,6 +12,7 @@ import {
   IoEyeOffOutline,
   IoCheckmarkCircle
 } from 'react-icons/io5'
+
 
 const Page = () => {
   const [activeSection, setActiveSection] = useState('profile')
@@ -240,7 +242,7 @@ const Page = () => {
                         className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black'
                       />
                     </div>
-                    <div>
+                    {/* <div>
                       <label className='block text-sm font-medium text-gray-700 mb-2'>Gender</label>
                       <select
                         name='gender'
@@ -253,6 +255,21 @@ const Page = () => {
                         <option value='other'>Other</option>
                         <option value='prefer-not-to-say'>Prefer not to say</option>
                       </select>
+                    </div> */}
+                    <div>
+                      <label className='block text-sm font-medium text-gray-700 mb-2'>Gender</label>
+                      <Select>
+                        <SelectTrigger className='w-full px-4 py-3 border border-gray-300 rounded-lg'>
+                          <SelectValue placeholder="Select a gender" />
+                        </SelectTrigger>
+                        <SelectContent className='w-full mt-[54px]'>
+                          <SelectGroup>
+                            {/* <SelectLabel>Gender</SelectLabel> */}
+                            <SelectItem className='text-[16px]' value="male">Male</SelectItem>
+                            <SelectItem className='text-[16px]' value="female">Female</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
