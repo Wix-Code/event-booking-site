@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { 
   IoCalendarOutline, 
@@ -17,6 +18,8 @@ const OrganizerOverview = () => {
     { label: 'Total Revenue', value: '₦2.4M', icon: IoWalletOutline, change: '+12% vs last month', trend: 'up' },
     { label: 'Total Attendees', value: '934', icon: IoPeopleOutline, change: '+8% vs last month', trend: 'up' },
   ]
+
+  const router = useRouter()
 
   const recentEvents = [
     {
@@ -83,7 +86,7 @@ const OrganizerOverview = () => {
       <div className='bg-white rounded-xl shadow-sm p-6 mb-8'>
         <h2 className='text-xl font-bold text-gray-900 mb-4'>Quick Actions</h2>
         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-          <button className='flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-black hover:bg-gray-50 transition'>
+          <button onClick={() => router.push("/organizer/create")} className='flex cursor-pointer items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-black hover:bg-gray-50 transition'>
             <div className='w-10 h-10 bg-black rounded-lg flex items-center justify-center'>
               <IoCalendarOutline className='text-xl text-white' />
             </div>
@@ -93,7 +96,7 @@ const OrganizerOverview = () => {
             </div>
           </button>
 
-          <button className='flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-black hover:bg-gray-50 transition'>
+          <button onClick={() => router.push("/organizer/create")} className='flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-black hover:bg-gray-50 transition'>
             <div className='w-10 h-10 bg-black rounded-lg flex items-center justify-center'>
               <IoTicketOutline className='text-xl text-white' />
             </div>
@@ -103,7 +106,7 @@ const OrganizerOverview = () => {
             </div>
           </button>
 
-          <button className='flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-black hover:bg-gray-50 transition'>
+          <button onClick={() => router.push("/organizer/attendees")} className='flex items-center gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-black cursor-pointer hover:bg-gray-50 transition'>
             <div className='w-10 h-10 bg-black rounded-lg flex items-center justify-center'>
               <IoPeopleOutline className='text-xl text-white' />
             </div>

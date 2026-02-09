@@ -101,7 +101,7 @@ const OrganizerSettingsPage = () => {
   const handleNotificationToggle = (key: string) => {
     setNotifications({
       ...notifications,
-      [key]: !notifications[key]
+      //[key]: !notifications[key]
     })
   }
 
@@ -118,20 +118,20 @@ const OrganizerSettingsPage = () => {
     setTimeout(() => setSaveSuccess(false), 3000)
   }
 
-  const handleSavePassword = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert('Passwords do not match!')
-      return
-    }
-    setSaveSuccess(true)
-    setPasswordData({
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    })
-    setTimeout(() => setSaveSuccess(false), 3000)
-  }
+  // const handleSavePassword = (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   if (passwordData.newPassword !== passwordData.confirmPassword) {
+  //     alert('Passwords do not match!')
+  //     return
+  //   }
+  //   setSaveSuccess(true)
+  //   setPasswordData({
+  //     currentPassword: '',
+  //     newPassword: '',
+  //     confirmPassword: ''
+  //   })
+  //   setTimeout(() => setSaveSuccess(false), 3000)
+  // }
 
   const sections = [
     { id: 'profile', name: 'Profile Information', icon: IoPersonOutline },
@@ -482,7 +482,7 @@ const OrganizerSettingsPage = () => {
               <div>
                 <h2 className='text-2xl font-bold text-gray-900 mb-6'>Password & Security</h2>
                 
-                <form onSubmit={handleSavePassword} className='space-y-6'>
+                <form className='space-y-6'>
                   <div>
                     <label className='block text-sm font-medium text-gray-700 mb-2'>Current Password</label>
                     <div className='relative'>
