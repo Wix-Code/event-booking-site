@@ -4,11 +4,27 @@ import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { events } from "../dummyData";
 import Link from "next/link";
+import { Popover, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const categories = ["All", "Music", "Religion", "Seminar", "Comedy", "Sports", "Business"];
+
+  const type = [
+    {
+      id: "physical",
+      name: "Physical Events",
+      icon: "FaLocationDot"
+    },
+    {
+      id: "virtual",
+      name: "Virtual Events",
+      icon: "FaVideo"
+    },
+  ]
 
   // Auto-filter events based on category
   const filteredEvents = events.filter((event) => {
@@ -18,6 +34,35 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-white py-6 sm:py-10 px-4">
+      <div>
+        <p className="text-[50px] font-bold">Discover Events For All The Things You Love</p>
+
+        <div>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">Open Popover</Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverHeader>
+                <PopoverTitle>Title</PopoverTitle>
+                <PopoverDescription>Description text here.</PopoverDescription>
+              </PopoverHeader>
+              <div>
+                {
+                  type.map((type) => {
+                    return (
+                      <div key={type.id}>
+                        
+                        <p className="text-[16px] font-medium">{type.name}</p>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+      </div>
       <div className="max-w-[1200px] mx-auto">
 
         {/* Title */}
