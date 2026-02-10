@@ -132,18 +132,25 @@ const Page = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white py-6 sm:py-10 px-4">
+    <div className="min-h-screen bg-white pb-6 sm:pb-10 md:px-0 px-4">
+      {/* Header */}
+      <div
+        style={{
+          backgroundImage:
+            "url('https://plus.unsplash.com/premium_photo-1661963052800-6e6b2aeea937?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bXVzaWMlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="mb-8 py-12 text-center text-white"
+      >
+        <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-bold mb-4">
+          Discover Events For All The Things You Love
+        </h1>
+        <p className="text-lg text-gray-200">
+          Find and book amazing experiences happening around you
+        </p>
+      </div>
       <div className="max-w-[1200px] mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-[50px] font-bold mb-4">
-            Discover Events For All The Things You Love
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Find and book amazing experiences happening around you
-          </p>
-        </div>
-
         {/* Filter Buttons */}
         <div className="mb-6">
           <div className="flex flex-wrap gap-3">
@@ -298,7 +305,7 @@ const Page = () => {
             {hasActiveFilters && (
               <button
                 onClick={clearAllFilters}
-                className="px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition"
+                className="px-6 py-3 bg-black cursor-pointer text-white rounded-lg font-semibold hover:bg-gray-800 transition"
               >
                 Clear All Filters
               </button>
