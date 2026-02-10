@@ -150,7 +150,7 @@ const Page = () => {
             {/* Price Filter */}
             <button
               onClick={() => setOpenPrice(true)}
-              className={`flex items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
+              className={`flex cursor-pointer items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
                 priceRange[0] !== 0 || priceRange[1] !== 500000
                   ? "border-black bg-black text-white"
                   : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
@@ -166,7 +166,7 @@ const Page = () => {
             {/* Date Filter */}
             <button
               onClick={() => setOpenDate(true)}
-              className={`flex items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
+              className={`flex cursor-pointer items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
                 dateFilter !== "all"
                   ? "border-black bg-black text-white"
                   : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
@@ -179,7 +179,7 @@ const Page = () => {
             {/* Location Filter */}
             <button
               onClick={() => setOpenLocation(true)}
-              className={`flex items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
+              className={`flex items-center cursor-pointer gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
                 selectedLocation !== "all"
                   ? "border-black bg-black text-white"
                   : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
@@ -196,7 +196,7 @@ const Page = () => {
                 <button
                   key={type.id}
                   onClick={() => setSelectedType(type.id)}
-                  className={`flex items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
+                  className={`flex items-center cursor-pointer gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
                     selectedType === type.id
                       ? "border-black bg-black text-white"
                       : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
@@ -212,7 +212,7 @@ const Page = () => {
             {hasActiveFilters && (
               <button
                 onClick={clearAllFilters}
-                className="px-5 py-3 border-2 border-red-200 bg-red-50 text-red-600 rounded-xl font-medium hover:bg-red-100 transition"
+                className="px-5 py-3 cursor-pointer border-2 border-red-200 bg-red-50 text-red-600 rounded-xl font-medium hover:bg-red-100 transition"
               >
                 Clear All
               </button>
@@ -228,7 +228,7 @@ const Page = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 text-sm cursor-pointer font-medium transition rounded-xl ${
+                className={`px-6 py-3 text-[16px] cursor-pointer font-medium transition ${
                   selectedCategory === category
                     ? "bg-black text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
