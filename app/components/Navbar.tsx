@@ -5,6 +5,8 @@ import { links } from '../dummyData'
 import Link from 'next/link'
 import { IoClose, IoMenu } from 'react-icons/io5'
 import { usePathname, useRouter } from 'next/navigation'
+import { useCurrencyStore } from '@/hooks/store/useCurrencyStore'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,17 +19,45 @@ const Navbar = () => {
     setIsMenuOpen(false)
   }
 
+  const countries = [
+    { name: "NIGERIA", flag: "🇳🇬" },
+    { name: "USA", flag: "🇺🇸" },
+    { name: "UK", flag: "🇬🇧" },
+  ];
+
   const pathname = usePathname()
+  const setCountry = useCurrencyStore((state) => state.setCountry);
+  const country = useCurrencyStore((state) => state.country);
+
+  console.log(country, "Country")
 
   return (
     <>
       <nav className={`sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-200/50 ${
         pathname === "/dashboard" ? "hidden" : ""
       }`}>
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto md:px-0 px-4 sm:px-6">
           <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 flex flex-row items-center gap-3">
+              <div>
+                <Select value={country} onValueChange={setCountry}>
+                  <SelectTrigger className="w-[150px]">
+                    <SelectValue placeholder="Select country" />
+                  </SelectTrigger>
+
+                  <SelectContent>
+                    {countries.map((c) => (
+                      <SelectItem key={c.name} value={c.name}>
+                        <div className="flex items-center gap-2">
+                          <span>{c.flag}</span>
+                          <span>{c.name}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               <Link href="/">
                 <img 
                   src="https://shows.ng/images/logo.svg" 

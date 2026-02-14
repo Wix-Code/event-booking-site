@@ -11,6 +11,7 @@ import LocationFilter from "../components/LocationFilter"
 import { IoCalendarOutline, IoWalletOutline } from "react-icons/io5"
 import { DateRange } from "react-day-picker"
 import { format } from "date-fns"
+import { Price } from "../components/PriceFormat"
 
 const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -133,7 +134,7 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-white pb-6 sm:pb-10 md:px-0 px-4">
-      {/* Header */}
+      
       <div
         style={{
           backgroundImage:
@@ -151,10 +152,10 @@ const Page = () => {
         </p>
       </div>
       <div className="max-w-[1200px] mx-auto">
-        {/* Filter Buttons */}
+        
         <div className="mb-6">
           <div className="flex flex-wrap gap-3">
-            {/* Price Filter */}
+            
             <button
               onClick={() => setOpenPrice(true)}
               className={`flex cursor-pointer items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
@@ -170,7 +171,6 @@ const Page = () => {
               }
             </button>
 
-            {/* Date Filter */}
             <button
               onClick={() => setOpenDate(true)}
               className={`flex cursor-pointer items-center gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
@@ -183,7 +183,6 @@ const Page = () => {
               {getDateFilterLabel()}
             </button>
 
-            {/* Location Filter */}
             <button
               onClick={() => setOpenLocation(true)}
               className={`flex items-center cursor-pointer gap-2 px-5 py-3 border-2 rounded-xl font-medium transition ${
@@ -196,7 +195,6 @@ const Page = () => {
               {selectedLocation === "all" ? "Location" : selectedLocation}
             </button>
 
-            {/* Event Type */}
             {eventTypes.map((type) => {
               const Icon = type.icon
               return (
@@ -215,7 +213,6 @@ const Page = () => {
               )
             })}
 
-            {/* Clear Filters */}
             {hasActiveFilters && (
               <button
                 onClick={clearAllFilters}
@@ -227,7 +224,6 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Category Filter */}
         <div className="mb-6">
           <h2 className="text-lg font-semibold mb-3">Categories</h2>
           <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -247,12 +243,10 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Results Count */}
         <p className="text-gray-600 font-medium mb-6">
           {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'} found
         </p>
 
-        {/* Events Grid */}
         {filteredEvents.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredEvents.map((event) => (
@@ -283,9 +277,11 @@ const Page = () => {
                     📍 {event.location}
                   </p>
 
-                  <p className="mt-2 font-semibold text-base">
+                  {/* <p className="mt-2 font-semibold text-base">
                     From ₦{event.priceFrom.toLocaleString()}
-                  </p>
+                  </p> */}
+
+                  <Price basePrice={event?.priceFrom} />
 
                   <Link 
                     href={`/events/${event.id}`}

@@ -6,6 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { LiaTimesSolid } from "react-icons/lia";
 import HeroPage from "./components/HeroPage";
 import Link from "next/link";
+import { Price } from "./components/PriceFormat";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -114,9 +115,11 @@ const Page = () => {
                   📍 {event.location}
                 </p>
 
-                <p className="mt-2 font-semibold text-base">
+                {/* <p className="mt-2 font-semibold text-base">
                   From ₦{event.priceFrom.toLocaleString()}
-                </p>
+                </p> */}
+
+                <Price basePrice={event.priceFrom} />
 
                 <Link 
                   href={`/events/${event.id}`}
